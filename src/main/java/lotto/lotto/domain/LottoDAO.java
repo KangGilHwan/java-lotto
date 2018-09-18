@@ -1,9 +1,7 @@
 package lotto.lotto.domain;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +24,7 @@ public class LottoDAO {
     }
 
     public void insertLottos(List<Lotto> lottos) throws SQLException {
-        String sql = "insert into LOTTOS(FIRST,SECOND,THIRD,FOURTH,FIFTH,SIXTH) values(?,?,?,?,?,?)";
+        String sql = "INSERT INTO lottos(first,second,third,fourth,fifth,sixth) VALUES(?,?,?,?,?,?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
@@ -45,7 +43,7 @@ public class LottoDAO {
     }
 
     public void insertRank(Map<Rank, Integer> numberOfRank) throws SQLException {
-        String sql = "insert into RANK(FIRST,SECOND,THIRD,FOURTH,FIFTH) values(?,?,?,?,?)";
+        String sql = "INSERT INTO rank(first,second,third,fourth,fifth) VALUES(?,?,?,?,?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
@@ -61,7 +59,7 @@ public class LottoDAO {
     }
 
     public void deleteLottos() {
-        String sql = "delete from lottos";
+        String sql = "DELETE FROM lottos";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.executeUpdate();
